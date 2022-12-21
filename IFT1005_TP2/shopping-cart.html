@@ -1,0 +1,79 @@
+<!-- Samuel Miller -->
+<!-- Malik Abada   -->
+<!-- Joseph Finan  -->
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <title>OnlineShop - Panier</title>
+        <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    </head>
+    <body>
+        <header class="headerStyle">
+            <a href="index.html">
+                <img src="assets/img/logo.svg" class="headerImgStyle" />
+            </a>
+            <nav class="headerNavMenuStyle">
+                <a id="homeMenuOption" class="headerMenuOptionStyle" href="index.html#homeMenuOption"> Accueil </a>
+                <a id="productsMenuOption" class="headerMenuOptionStyle" href="products.html#productsMenuOption"> Produits</a>
+                <a id="contactMenuOption" class="headerMenuOptionStyle" href="contact.html#contactMenuOption"> Contact </a>
+                <a id="cartMenuOption" class="headerCartMenuOptionStyle" href="shopping-cart.html#cartMenuOption">
+                    <span class="fa-stack fa-lg white">
+                        <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                        <i class="fa fa-shopping-cart fa-stack-1x headerCartColorStyle"></i>
+                    </span>
+                    <span class="count">3</span>
+                </a>
+            </nav>
+        </header>
+
+        <main class="contentStyle">
+            <h1 >Panier</h1>
+            <table  class="cartTableStyle tableBottomBorderStyle">
+                <tr class="tableBottomBorderStyle">
+                    <th class="cartFirstColumnStyle "></th>
+                    <th class="cartHeaderColumnAlignStyle">Nom</th>
+                    <th class="cartHeaderColumnAlignStyle">Prix unitaire</th>
+                    <th class="cartHeaderColumnAlignStyle">Quantité</th>
+                    <th class="cartFourthColumnStyle">Prix</th>
+                </tr>
+		<tr class="cartRowStyle">
+                    <td class="cartFirstColumnStyle cartRowStyle"><i class="fa fa-circle-xmark fa-2x"></i></td>
+                    <td><a href="product.html">Canon EOS 5D Mark II</a></td>
+                    <td>2999.99</td>
+                    <td style="padding-left:5px;"><i style="padding:3px;"class="fa fa-circle-minus fa-1x"></i>1<i style="padding:3px;" class="fa fa-circle-plus fa-1x"></i></td>
+                    <td class="cartFourthColumnStyle">2999.99</td>
+		</tr>
+                <tr class="cartRowStyle">
+                    <td class="cartFirstColumnStyle cartRowStyle"><i class="fa fa-circle-xmark fa-2x"></i></td>
+                    <td><a href="product.html">Nikon D7000</a></td>
+                    <td>549.99</td>
+                    <td style="padding-left:5px;"><i style="padding:3px;"class="fa fa-circle-minus fa-1x"></i>1<i style="padding:3px;" class="fa fa-circle-plus fa-1x"></i></td>
+                    <td class="cartFourthColumnStyle">549.99</td>
+                </tr>
+                <tr class="cartRowStyle">
+                    <td class="cartFirstColumnStyle cartRowStyle"><i class="fa fa-circle-xmark fa-2x"></i></td>
+                    <td><a href="product.html">Canon PowerShot SD1300</a></td>
+                    <td>299.99</td>
+                    <td style="padding-left:5px;" ><i style="padding:3px;"class="fa fa-circle-minus fa-1x"></i>1<i style="padding:3px;" class="fa fa-circle-plus fa-1x"></i></td>
+                    <td class="cartFourthColumnStyle">299.99</td>
+                </tr>
+            </table>
+            <h4 align="right">Total: 3849.97$</h4>
+            <div  id="actionBtnGroup">
+                <button class="btnStyle" type="button">Vider le panier</button>
+                <a style="float:right;"class="btnStyle" href="order.html">Commander »</a>
+            </div>
+        </main>
+
+        <footer class="footerStyle">
+            <div>
+                <h6>Samuel Miller (20200165)</h6>
+                <h6>Malik Abada (20173066)</h6>
+                <h6>Joseph Finan (20255174)</h6>
+            </div>
+        </footer>
+    </body>
+</html>
