@@ -259,13 +259,27 @@ body {
 	width: 50%;
 }
 
+#ajouterProduit {
+	float: right;
+}
+
+#dialog {
+	margin: auto;
+	color: white;
+	border-radius: 4px;
+	padding: 10px;
+	text-decoration: none;
+	border : 1px solid #0b2d3d;
+	background-color: black;
+	float: center;
+    z-index: 10;
+	position: absolute;
+	bottom: 100px;
+}
+
 #productImage {
 	max-height: 100%; 
 	max-width: 100%;
-}
-
-[name="quantiteProduit"] {
-	float: right;
 }
 
 [name="commande"] {

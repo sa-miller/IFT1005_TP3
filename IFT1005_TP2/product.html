@@ -25,38 +25,39 @@
                         <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
                         <i class="fa fa-shopping-cart fa-stack-1x headerCartColorStyle"></i>
                     </span>
-                    <span class="count">3</span>
+                    <span class="count" style="display:none"></span>
                 </a>
             </nav>
         </header>
 
         <main class="contentStyle">
-            <h1 id='product-title'>Portable</h1>
+            <h1 id='productTitle'></h1>
             <span class="colProduct">
-                <img id='product-image' src="" id="productImage" />
+                <img id='productImage' src="" />
             </span>
             <span class="colProduct">
                 <h2>Description</h2>
-                <p id='product-description'>
+                <p id='productDescription'>
                 </p>
                 <h2>Caractéristiques</h2>
                 <div>
-                    <ul id="product-features">
-                    </ul>
+                    <ul id="productFeatures"></ul>
                 </div>
                 <hr style="border: 1px dashed #cccccc;">
                 <br>
                 <div>
-                    Prix: <b>699.99$</b>
+                    Prix: <b id="productPrice"></b>
                     <span>
-                        <form name="quantiteProduit" , action="shopping-cart.html">
+                        <form id="ajouterProduit">
                             Quantité:
-                            <input class="formControl" type="number" value="1" name="quantite" min="1"/>
+                            <input class="formControl" type="number" value="1" id="quantiteProduit" min="1"/>
                             <button class="btnStyle" type="submit" value="Ajouter"><i class="fa fa-cart-plus" style="color: white"></i>  Ajouter</button>
                         </form>
                     </span>
                 </div>
             </span>
+
+            <dialog id="dialog" style="display:none">Le produit a été ajouté au panier.</dialog>
         </main>
 
         <footer class="footerStyle">
@@ -68,7 +69,7 @@
         </footer>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"></script>
-        <script src="./assets/js/script.js"></script>
+        <script src="./assets/js/miseAJourCount.js"></script>
         <script src="./assets/js/product.js"></script>
     </body>
 </html>

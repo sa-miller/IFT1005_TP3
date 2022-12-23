@@ -1,72 +1,101 @@
-produits       = {}
-dernierFiltre  = pasDeFiltre
-dernierTri     = triPrixBasHaut
+// Samuel Miller
+// Malik Abada
+// Joseph Finan
+//
+// 23 décembre
+//
+// Ce code permet le fonctionnement de la page affichant tous les produits selon certains critères de recherche
 
-function filtrerProduits (produit, categorie) {
-    if ( categorie == "all" ) {
-        return true
+produits       = {}             // tableau contenant les produits à afficher
+dernierFiltre  = pasDeFiltre    // filtre utilisé le plus récent
+dernierTri     = triPrixBasHaut // tri utilisé le plus récent
+
+// filtrerProduits est une fonction générale pour déterminer si un produit est dans une certaine catégorie
+
+function filtrerProduits(produit, categorie) {
+    if (categorie == "all") {
+        return true;
     } else {
         return produit.category == categorie;
     }
 }
 
-function filtrerCameras (produit) {
-    return filtrerProduits (produit, "cameras")
+// fonctions qui déterminent si un produit est dans une catégorie en particulier
+
+function filtrerCameras(produit) {
+    return filtrerProduits(produit, "cameras");
 }
 
-function filtrerConsoles (produit) {
-    return filtrerProduits (produit, "consoles")
+function filtrerConsoles(produit) {
+    return filtrerProduits(produit, "consoles");
 }
 
-function filtrerEcrans (produit) {
-    return filtrerProduits (produit, "screens")
+function filtrerEcrans(produit) {
+    return filtrerProduits(produit, "screens");
 }
 
-function filtrerOrdinateurs (produit) {
-    return filtrerProduits (produit, "computers")
+function filtrerOrdinateurs(produit) {
+    return filtrerProduits(produit, "computers");
 }
 
-function pasDeFiltre (produit) {
-    return filtrerProduits (produit, "all")
+function pasDeFiltre(produit) {
+    return filtrerProduits(produit, "all");
 }
 
-function triPrixBasHaut (productA, productB) {
+// fonctions qui servent à trier les produits en fonction d'un certain critère
+// elles sont utilisées avec sort()
+
+function triPrixBasHaut(productA, productB) {
     return productA.price - productB.price;
 }
 
-function triPrixHautBas (productA, productB) {
+function triPrixHautBas(productA, productB) {
     return productB.price - productA.price;
 }
 
-function triNomAZ (productA, productB) {
+function triNomAZ(productA, productB) {
     return productA.name.localeCompare(productB.name);
 }
 
-function triNomZA (productA, productB) {
+function triNomZA(productA, productB) {
     return productB.name.localeCompare(productA.name);
 }
 
+// toggleSelected désélectionne un élément sélectionné précédemment et sélectionne celui
+// qui a été sélectionné le plus récemment
+
 function toggleSelected(id) {
-    $('#' + id).find('.selected').removeClass('selected')
-    event.target.className += " selected"
+    $('#' + id).find('.selected').removeClass('selected');
+    event.target.className += " selected";
 }
 
+// displayProduits affiche les produits selon les fonctions de filtre et de tri données
+
 function displayProduits(produits, tri, filtre) {
-    if ( tri != dernierTri ) {
+    // changement de filtre/tri affiché comme filtre/tri sélectionné s'il y a un changement
+
+    if (tri != dernierTri) {
         toggleSelected('product-criteria');
     } else if (filtre != dernierFiltre) {
-        toggleSelected('product-categories')
+        toggleSelected('product-categories');
     }
 
-    produits = produits.filter(filtre).sort(tri)
-    dernierFiltre = filtre
-    dernierTri = tri
+    // tri et filtre de produits
+    // sauvegarde du dernier tri et filtre utilisés
 
-    $('#products-count').html(produits.length + " produits")
+    produits = produits.filter(filtre).sort(tri);
+    dernierFiltre = filtre;
+    dernierTri = tri;
 
-    listeProduits = $('#products-list')
+    // mise à jour du nombre total de produits affichés
 
-    listeProduits.empty()
+    $('#products-count').html(produits.length + " produits");
+
+    // affichage des produits
+
+    listeProduits = $('#products-list');
+
+    listeProduits.empty();
     produits.forEach((produit) => {
         listeProduits.append(
             `<a class="productContentStyle" href="./product.html?id=${produit.id}" title="En savoir plus...">
@@ -77,6 +106,8 @@ function displayProduits(produits, tri, filtre) {
         );
     });
 }
+
+// $.ajax obtient la liste de produits à partir du fichier JSON la contenant, puis affiche tous les produits en ordre croissant de prix
 
 $.ajax({
     url: './data/products.json',
