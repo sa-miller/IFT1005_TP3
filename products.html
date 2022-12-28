@@ -1,0 +1,76 @@
+<!-- Samuel Miller -->
+<!-- Malik Abada   -->
+<!-- Joseph Finan  -->
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <title>OnlineShop - Produits</title>
+        <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    </head>
+    
+    <body>
+        <header>
+            <a href="index.html">
+                <img src="assets/img/logo.svg" class="headerImg" />
+            </a>
+            <nav class="headerNavMenu">
+                <a id="homeMenuOption" class="headerMenuOption" href="index.html#homeMenuOption"> Accueil </a>
+                <a id="productsMenuOption" class="headerMenuOptionActive" href="products.html#productsMenuOption"> Produits</a>
+                <a id="contactMenuOption" class="headerMenuOption" href="contact.html#contactMenuOption"> Contact </a>
+                <a id="cartMenuOption" class="headerCartMenuOption" href="shopping-cart.html#cartMenuOption">
+                    <span class="fa-stack fa-lg white">
+                        <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                        <i class="fa fa-shopping-cart fa-stack-1x headerCartColor"></i>
+                    </span>
+                    <span class="count" style="display:none"></span>
+                </a>
+            </nav>
+        </header>
+
+        <main class="productsPageContent">
+            <div class="filtersSection" aria-label="Filtres">
+                <section>
+                    <h2>Catégories</h2>
+                    <div class ="filtersSubSection "id="product-categories">
+                        <button class ="buttonFilter topRoundedCorners" onclick="displayProduits(produits, dernierTri, filtrerCameras)">Appareils photo</button>
+                        <button class ="buttonFilter" onclick="displayProduits(produits, dernierTri, filtrerConsoles)">Consoles</button>
+                        <button class ="buttonFilter" onclick="displayProduits(produits, dernierTri, filtrerEcrans)">Écrans</button>
+                        <button class ="buttonFilter" onclick="displayProduits(produits, dernierTri, filtrerOrdinateurs)">Ordinateurs</button>
+                        <button class ="buttonFilter bottomRoundedCorners selected" onclick="displayProduits(produits, dernierTri, pasDeFiltre)">Tous les produits</button>
+                    </div>
+                </section>
+                <section>
+                    <h2>Classement</h2>
+                    <div class ="filtersSubSection" id="product-criteria">
+                        <button  class ="buttonFilter topRoundedCorners selected" onclick=displayProduits(produits,triPrixBasHaut,dernierFiltre)>Prix (bas-haut)</button>
+                        <button  class ="buttonFilter" onclick=displayProduits(produits,triPrixHautBas,dernierFiltre)>Prix (haut-bas)</button>
+                        <button  class ="buttonFilter" onclick=displayProduits(produits,triNomAZ,dernierFiltre)>Nom (A-Z)</button>
+                        <button  class ="buttonFilter bottomRoundedCorners" onclick=displayProduits(produits,triNomZA,dernierFiltre)>Nom (Z-A)</button>
+                    </div>
+                </section>
+            </div>
+            <div class="productsSection">
+		        <div class="mainProductsPanelHeader">
+                    <h1 style="float:left;">Produits</h1>
+                    <p id="products-count" style="float:right;"></p>
+		        </div>
+                <div  class="mainProductsContentHeader" id="products-list"></div>
+            </div>
+        </main>
+
+        <footer>
+            <div>
+                <h6>Samuel Miller (20200165)</h6>
+                <h6>Malik Abada (20173066)</h6>
+                <h6>Joseph Finan (20255174)</h6>
+            </div>
+        </footer>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"></script>
+        <script src="./assets/js/header.js"></script>
+        <script src="./assets/js/products.js"></script>
+    </body>
+</html>

@@ -1,0 +1,124 @@
+<!-- Samuel Miller -->
+<!-- Malik Abada   -->
+<!-- Joseph Finan  -->
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <title>OnlineShop - Commande</title>
+        <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    </head>
+
+    <body>
+        <header>
+            <a href="index.html">
+                <img src="assets/img/logo.svg" class="headerImg" />
+            </a>
+
+            <nav class="headerNavMenu">
+                <a id="homeMenuOption" class="headerMenuOption" href="index.html#homeMenuOption"> Accueil </a>
+                <a id="productsMenuOption" class="headerMenuOption" href="products.html#productsMenuOption"> Produits</a>
+                <a id="contactMenuOption" class="headerMenuOption" href="contact.html#contactMenuOption"> Contact </a>
+                <a id="cartMenuOption" class="headerCartMenuOption" href="shopping-cart.html#cartMenuOption">
+                    <span class="fa-stack fa-lg white">
+                        <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                        <i class="fa fa-shopping-cart fa-stack-1x headerCartColor"></i>
+                    </span>
+                    <span class="count" style="display:none"></span>
+                </a>
+            </nav>
+        </header>
+
+        <main>
+            <form id="formControl" name="commande" action="confirmation.html">
+                <h1>Page de commande</h1>
+                <h2>Contact</h2>
+                <div class="colOrder">
+                    <div class="col">
+                        <label for="firstname">Prénom</label>
+                        <input 
+                            class="formControl" 
+                            type="text"
+                            name="firstname"
+                            placeholder="Prénom"
+                        />
+
+                        <label for="email">Adresse courriel</label>
+                        <input 
+                            class="formControl" 
+                            type="email"
+                            name="email"
+                            placeholder="Adresse courriel"
+                        />
+                    </div>
+
+                    <div class="col">
+                        <label for="lastname">Nom</label>
+                        <input 
+                            class="formControl" 
+                            type="text"
+                            name="lastname"
+                            placeholder="Nom"
+                        />
+                        
+                        <label for="phone">Numéro de téléphone</label>
+                        <input 
+                            class="formControl" 
+                            type="text"
+                            name="phone"
+                            placeholder="###-###-####"
+                        />
+                    </div>
+                </div>
+
+                <h2>Paiement</h2>
+
+                <div class="colOrder">
+                    <div class="col">
+                        <label for="creditcard">Numéro de carte de crédit</label>
+                        <input
+                            class="formControl" 
+                            type="text"
+                            name = "creditcard"
+                            placeholder="•••• •••• •••• ••••"
+                        />
+                    </div>
+
+                    <div class="col">
+                        <label for="creditcardexpiry">Expiration (mm/aa)</label>
+                        <input 
+                            class="formControl" 
+                            type="text" 
+                            name="creditcardexpiry"
+                            placeholder="mm/aa"
+                        />
+                    </div>
+                </div>
+
+                <button
+                    class="btn" 
+                    type="submit" 
+                    style="float: right; margin-right:1%" 
+                    data-form-type="action">Payer <b>»</b></button>
+            </form>
+        </main>
+
+        <footer>
+            <div>
+                <h6>Samuel Miller (20200165)</h6>
+                <h6>Malik Abada (20173066)</h6>
+                <h6>Joseph Finan (20255174)</h6>
+            </div>
+        </footer>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"></script>
+
+        <script type="text/javascript" src="./assets/js/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="./assets/js/additional-methods.min.js"></script>
+        <script type="text/javascript" src="./assets/js/messages_fr.js"></script>
+
+        <script type="text/javascript" src="./assets/js/header.js"></script>
+        <script type="text/javascript" src="./assets/js/order.js"></script>
+    </body>
+</html>
