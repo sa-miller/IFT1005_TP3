@@ -6,36 +6,39 @@
 *
 */
 
-// 23 décembre
-//
-// Ce code contient les fonctions permettant d'obtenir le nombre de produits du local storage et de l'afficher
+// updateCount change la quantité de produits dans le panier affiché sur les pages du site
 
-// miseAJourCount change la quantité de produits dans le panier affiché sur les pages du site
+function updateCount(qtProducts) {
+    let count = $(".count"); // sélecteur d'élément contenant la quantité de produits
 
-function miseAJourCount(qtProduits) {
-    count = $(".count");
-
-    if (qtProduits == 0) {
+    // s'il n'y a aucun produit dans le panier, on cache l'élément
+    // sinon, on affiche l'élément contenant la quantité de produits et on sauvegarde la quantité
+    
+    if (qtProducts == 0) {
         count.hide();
+        localStorage.removeItem('qtProducts');
     } else {
         count.show();
-        count.html(qtProduits);
+        count.html(qtProducts);
+        localStorage.setItem('qtProducts', JSON.stringify(qtProducts));
     }
-
-    localStorage.setItem('qtProduits', JSON.stringify(qtProduits));
 }
 
-// getQtProduits obtient le nombre de produits dans le panier du local storage
+// getQtProduits obtient la quantité de produits dans le panier du local storage
 
-function getQtProduits() {
-    let qtProduits = JSON.parse(localStorage.getItem('qtProduits'));
+function getQtProducts() {
+    // quantité de produits sauvegardée dans le local storage
+    let qtProducts = JSON.parse(localStorage.getItem('qtProducts'));
 
-    if (qtProduits == null) {
-        qtProduits = 0;
+    // retour de la quantité de produits
+
+    if (qtProducts == null) {
+        qtProducts = 0;
     }
-    return parseInt(qtProduits)
+
+    return parseInt(qtProducts)
 }
 
 // premier affichage de produits lors du chargement des pages
 
-miseAJourCount(getQtProduits())
+updateCount(getQtProducts())

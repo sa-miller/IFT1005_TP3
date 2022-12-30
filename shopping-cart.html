@@ -7,19 +7,21 @@
     <head>
         <meta charset="UTF-8" />
         <title>OnlineShop - Panier</title>
-        <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+        <link rel="stylesheet" href="./assets/css/style.css">
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     </head>
+
     <body>
         <header>
             <a href="index.html">
-                <img src="assets/img/logo.svg" class="headerImg" />
+                <img src="assets/img/logo.svg"/>
             </a>
-            <nav class="headerNavMenu">
-                <a id="homeMenuOption" class="headerMenuOption" href="index.html#homeMenuOption"> Accueil </a>
-                <a id="productsMenuOption" class="headerMenuOption" href="products.html#productsMenuOption"> Produits</a>
-                <a id="contactMenuOption" class="headerMenuOption" href="contact.html#contactMenuOption"> Contact </a>
-                <a id="cartMenuOption" class="headerCartMenuOption" href="shopping-cart.html#cartMenuOption">
+            
+            <nav>
+                <a class="headerMenuOption" id="homeMenuOption" href="index.html">Accueil</a>
+                <a class="headerMenuOption" id="productsMenuOption" href="products.html">Produits</a>
+                <a class="headerMenuOption" id="contactMenuOption" href="contact.html">Contact</a>
+                <a class="headerCartMenuOption" id="cartMenuOption" href="shopping-cart.html">
                     <span class="fa-stack fa-lg white">
                         <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
                         <i class="fa fa-shopping-cart fa-stack-1x headerCartColor"></i>
@@ -30,9 +32,10 @@
         </header>
 
         <main>
-            <h1 >Panier</h1>
-            <div id="noItemDiv">Aucun produit dans le panier.</div>
-            <div id="cartContent">
+            <h1>Panier</h1>
+            <div id="noItemDiv" style="display:none">Aucun produit dans le panier.</div>
+
+            <div id="cartContent" style="display:none">
                 <table id="cartItems" class="cartTable tableBottomBorder">
                     <tr class="tableBottomBorder">
                         <th class="cartFirstColumn "></th>
@@ -42,9 +45,11 @@
                         <th class="cartFourthColumn">Prix</th>
                     </tr>
                 </table>
-                <h4 id="cartTotalCost" style="text-align: right"></h4>
-                <div  id="actionBtnGroup">
-                    <button class="btn" type="button" onclick="viderPanier(products);">Vider le panier</button>
+
+                <h4 id="cartTotalCost" style="text-align:right"></h4>
+                
+                <div id="actionBtnGroup">
+                    <button class="btn" type="button" onclick="emptyCartConfirm();">Vider le panier</button>
                     <a style="float:right;"class="btn" href="order.html">Commander »</a>
                 </div>
             </div>
@@ -59,7 +64,8 @@
         </footer>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"></script>
-        <script src="./assets/js/shopping-cart.js"></script>
+
         <script src="./assets/js/header.js"></script>
+        <script src="./assets/js/shopping-cart.js"></script>
     </body>
 </html>

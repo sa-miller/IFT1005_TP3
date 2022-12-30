@@ -2,7 +2,9 @@
 /* Malik Abada   */
 /* Joseph Finan  */
 
-/*----------------------------------------- CSS general pour toutes les pages du site -----------------------------------------*/
+/*========================================= CSS général pour toutes les pages du site =========================================*/
+
+/*------------------------------------------------------ CSS pour le body -----------------------------------------------------*/
 body {
 	display: flex;
 	flex-direction: column;
@@ -24,14 +26,14 @@ header {
 	background-color: #14597f;
 }
 
-.headerImg {
+header img {
 	float: left;
 	padding-top: 5px;
 	padding-left: 10px;
 	width: 20%
 }
 
-.headerNavMenu {
+header nav {
 	float: right;
 	height: 100%;
 	display: flex;
@@ -45,16 +47,7 @@ header {
 	color: white;
 }
 
-.headerMenuOption:focus, .headerMenuOption:hover, .headerMenuOption:active {
-	border-radius: 8%;
-	background-color: #1fb5e9;
-}
-
-.headerMenuOptionActive {
-	font-size: 14px;
-	padding: 9px 9px;
-	text-decoration: none;
-	color: white;
+.headerMenuOption:focus, .headerMenuOption:hover, .headerMenuOption:active, .active {
 	border-radius: 8%;
 	background-color: #1fb5e9;
 }
@@ -113,18 +106,20 @@ main {
 	box-sizing: border-box;
 }
 
+/*=============================================================================================================================*/
+
 /*----------------------------------------- CSS pour le contenu de la page d'accueil  -----------------------------------------*/
 .mainPageContent {
 	display: flex;
 	flex-direction: row; 
 }
 
-.mainPageImage {
+.mainPageContent img {
 	width: 70%;
 	float: right;
 }
 
-.mainPageInnerPannel {
+.mainPageContent div {
 	width: 50%;
 }
 
@@ -243,18 +238,18 @@ main {
 	padding: 10px;
 }
 
-.col {
+.row {
+	column-count: 2;
+	column-gap: 10px;
+}
+
+.row > div {
 	display: inline-block;
 	width: 100%;
 	height: 100%;
 }
 
-.colOrder {
-	column-count: 2;
-	column-gap: 10px;
-}
-
-.colOrder .formControl {
+.row .formControl {
 	width: 95%;
 	margin: 5px 5px 15px 0px;
 }
@@ -287,7 +282,7 @@ main {
 	max-width: 100%;
 }
 
-[name="commande"] {
+[name="orderForm"] {
 	font-weight: bold;
 }
 
@@ -310,6 +305,14 @@ main {
 	text-decoration: none;
 }
 
+.contactPageSection i {
+	margin-bottom: 20px;
+}
+
+.contactPageSection .contactPageSection div {
+	font-style: italic;
+}
+
 .contactContainer{
 	width: 100%;
 	height: 180px;
@@ -321,7 +324,6 @@ main {
 }
 
 /*----------------------------------------- CSS pour le contenu de la page du panier -----------------------------------------*/
-
 .tableBottomBorder{
 	border-collapse: collapse; 
 	border-bottom: 1px solid black;

@@ -6,100 +6,84 @@
 *
 */
 
-// 23 décembre
-//
-// Ce code permet le fonctionnement de la page affichant un produit en particulier et permettant de l'ajouter au panier
+// ($.urlParam() provient de urlParam.js)
 
-// $.urlParam permet d'obtenir un id passé dans l'URL avec ?id=(id)
+var id = $.urlParam('id'); // id du produit à afficher
 
-$.urlParam = function(name){
-    var resultat = new RegExp('[\?]' + name + '=([^]*)').exec(window.location.href);
-    if (resultat == null) {
-        return null;
-    } else {
-        return resultat[1] || 0;
-    }
-}
+// displayProduct affiche un produit selon une liste de produits et l'id obtenu ci-haut
 
-// id du produit à afficher
+function displayProduct(products){
+    // produit correspondant à l'id donné dans la liste de produits
+    const product = products.find(prod => prod.id == id);
 
-var id = $.urlParam('id');
+    // si fin de URL invalide ou produit non trouvé, on affiche "Page non trouvée!"
 
-// displayProduit affiche un produit selon une liste de produits et l'id obtenu ci-haut
-
-function displayProduit(produits){
-    // on trouve le produit correspondant à l'id donné dans la liste de produits
-    // si fin de URL invalide ou produit non trouvé, on affiche "page non trouvée!"
-
-    const produit = produits.find(prod => prod.id == id);
-    if (produit == undefined) {
+    if (product == undefined) {
         $(".colProduct").empty();
         $("#productTitle").text("Page non trouvée!");
     } else {
         // sinon, on affiche le produit et ses détails correspondants
 
-        const features = produit.features;
+        // affichage des détails du produit
 
-        $("#productTitle").text(produit.name);
-        $("#productImage").attr('src', './assets/img/' + produit.image);
-        $("#productDescription").text(produit.description);
-        $("#productPrice").text(produit.price + " $")
+        $("#productTitle").text(product.name);
+        $("#productImage").attr('src', './assets/img/' + product.image);
+        $("#productDescription").text(product.description);
+        $("#productPrice").text(product.price + " $")
     
         // affichage des caractéristiques du produit
 
-        listeCaracts = $('#productFeatures');
-        listeCaracts.empty();
+        const featureList = $('#productFeatures'); // sélecteur de la liste de caractéristiques
+        featureList.empty();                       // on vide la liste pour afficher la nouvelle liste
 
-        features.forEach((feature) => {
-            listeCaracts.append(`<li>` + feature + `</li>`);
+        // affichage de chaque caractéristique dans la liste
+
+        product.features.forEach((feature) => {
+            featureList.append(`<li>` + feature + `</li>`);
         });
     }
 }
 
-// le code ci-bas fais la gestion de l'ajout du produit après avoir cliqué le bouton "ajouter"
+// le code ci-bas fait la gestion de l'ajout du produit après avoir cliqué le bouton "ajouter"
 
 $("#addProduct").submit((event) => {
     event.preventDefault()
-    
-    // quantité de produit entrée par l'utilisateur et panier stocké dans le local storage
 
-    const quantiteAjout = $("#quantiteProduit").val();
-    let panier          = JSON.parse(localStorage.getItem('panier'));
+    let cart = JSON.parse(localStorage.getItem('cart')); // tableau contenant les produits dans le panier
 
-    // s'il n'y a pas de panier dans le local storage, panier est un tableau vide
+    // s'il n'y a pas de panier dans le local storage, cart est un tableau vide
 
-    if (panier == null) {
-        panier = [];
+    if (cart == null) {
+        cart = [];
     }
 
-    // produit à ajouter au panier et incrémentation de la quantité du produit dans le panier
-    // (getQtProduits() vient de miseAJourCount.js)
+    // (getQtProducts() et updateCount proviennent de header.js)
 
-    const produit = panier.find((produit) => produit.id == id);
-    var qtProduits = getQtProduits() + parseInt(quantiteAjout);
+    const addedQt = $("#qtProduct").val();                    // quantité de produit entrée par l'utilisateur
+    const product = cart.find((product) => product.id == id); // produit à ajouter au panier
 
     // si le produit est déjà dans le panier, on incrémente sa quantité
-    // sinon, on l'ajoute au panier
 
-    if (produit != null){
-        produit.quantite = parseInt(produit.quantite) + parseInt(quantiteAjout);
+    if (product != null){
+        product.quantite = parseInt(product.quantite) + parseInt(addedQt);
     } else {
-        panier.push({
+        // sinon, on l'ajoute au panier
+
+        cart.push({
             id: id,
-            quantite: quantiteAjout,
+            quantite: addedQt,
         });
     }
 
-    // stockage du panier
+    // sauvegarde du panier
 
-    localStorage.setItem('panier', JSON.stringify(panier));
+    localStorage.setItem('cart', JSON.stringify(cart));
     
-    // mise à jour de la quantité de produits dans le panier affichée et affichage d'un dialogue de confirmation
+    // mise à jour de la quantité de produits affichée et affichage d'un dialogue de confirmation
 
-    miseAJourCount(qtProduits);
+    updateCount(getQtProducts() + parseInt(addedQt));
     $("#dialog").show();
     setTimeout(() => { $("#dialog").hide() }, 5000);
-    
 })
 
 // $.ajax obtient la liste de produits à partir du fichier JSON la contenant, puis fait afficher le produit
@@ -109,8 +93,8 @@ $.ajax({
     type: 'GET',
     dataType: 'json',
     success: (data) => {
-        produits = data;
-        displayProduit(produits);
+        products = data;
+        displayProduct(products);
     },
     error: (error) => {
         console.log(error);

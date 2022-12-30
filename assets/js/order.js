@@ -6,11 +6,16 @@
 *
 */
 
+// $.validator.setDefaults définit les paramètres du validateur
+
 $.validator.setDefaults({
-  submitHandler: function(formControl) {
-    let formData = $(formControl).serializeArray();
-    var orderID = JSON.parse(localStorage.getItem('orderID'))
-    
+  // submitHandler définit les paramètres pour soumission du formulaire
+
+  submitHandler: function(orderForm) {
+    // incrémentation et enregistrement du orderID
+
+    let orderID = JSON.parse(localStorage.getItem('orderID'))
+
     if (orderID == null) {
       orderID = 1
     } else {
@@ -18,18 +23,20 @@ $.validator.setDefaults({
     }
 
     localStorage.setItem('orderID', orderID);
-    localStorage.setItem('firstName', JSON.stringify(formData[0].value));
-    localStorage.setItem('lastName', JSON.stringify(formData[2].value));
-
-    formControl.submit()
+    orderForm.submit() // soumission du formulaire
   }
 });
 
-$().ready(function() {
-    $("#formControl").validate({
-        errorElement: 'div',
-        errorClass: 'errorMessage',
+// code appelé lors du chargement de la page
 
+$().ready(function() {
+    // validate définit les paramètres pour validation du formulaire
+
+    $("#orderForm").validate({
+        errorElement: 'div',        // balise d'élément contenant les messages d'erreurs
+        errorClass: 'errorMessage', // classe de cet élément
+
+        // règles de validation
         rules: {
             firstname: {
               required: true, 

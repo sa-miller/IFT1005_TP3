@@ -6,105 +6,105 @@
 *
 */
 
-// 23 décembre
-//
-// Ce code permet le fonctionnement de la page affichant tous les produits selon certains critères de recherche
+var lastFilter = noFilter           // filtre utilisé le plus récent
+var lastSort   = sortPriceBottomTop // tri utilisé le plus récent
 
-dernierFiltre  = pasDeFiltre    // filtre utilisé le plus récent
-dernierTri     = triPrixBasHaut // tri utilisé le plus récent
+// filterProducts est une fonction générale pour déterminer si un produit est dans une certaine catégorie
 
-// filtrerProduits est une fonction générale pour déterminer si un produit est dans une certaine catégorie
-
-function filtrerProduits(produit, categorie) {
-    if (categorie == "all") {
+function filterProducts(product, category) {
+    if (category == "all") {
         return true;
     } else {
-        return produit.category == categorie;
+        return product.category == category;
     }
 }
 
-// fonctions qui déterminent si un produit est dans une catégorie en particulier
+// fonctions qui déterminent si un produit est dans une catégorie particulière
+// elles sont utilisées avec filter()
 
-function filtrerCameras(produit) {
-    return filtrerProduits(produit, "cameras");
+function filterCameras(product) {
+    return filterProducts(product, "cameras");
 }
 
-function filtrerConsoles(produit) {
-    return filtrerProduits(produit, "consoles");
+function filterConsoles(product) {
+    return filterProducts(product, "consoles");
 }
 
-function filtrerEcrans(produit) {
-    return filtrerProduits(produit, "screens");
+function filterScreens(product) {
+    return filterProducts(product, "screens");
 }
 
-function filtrerOrdinateurs(produit) {
-    return filtrerProduits(produit, "computers");
+function filterComputers(product) {
+    return filterProducts(product, "computers");
 }
 
-function pasDeFiltre(produit) {
-    return filtrerProduits(produit, "all");
+function noFilter(product) {
+    return filterProducts(product, "all");
 }
 
 // fonctions qui servent à trier les produits en fonction d'un certain critère
 // elles sont utilisées avec sort()
 
-function triPrixBasHaut(productA, productB) {
+function sortPriceBottomTop(productA, productB) {
     return productA.price - productB.price;
 }
 
-function triPrixHautBas(productA, productB) {
+function sortPriceTopBottom(productA, productB) {
     return productB.price - productA.price;
 }
 
-function triNomAZ(productA, productB) {
+function sortNameAZ(productA, productB) {
     return productA.name.localeCompare(productB.name);
 }
 
-function triNomZA(productA, productB) {
+function sortNameZA(productA, productB) {
     return productB.name.localeCompare(productA.name);
 }
 
-// toggleSelected désélectionne un élément sélectionné précédemment et sélectionne celui
-// qui a été sélectionné le plus récemment
+// toggleSelected désélectionne un élément sélectionné précédemment
+// et sélectionne celui qui a été sélectionné le plus récemment
 
-function toggleSelected(id) {
-    $('#' + id).find('.selected').removeClass('selected');
-    event.target.className += " selected";
+function toggleSelected(idPrevious, idClick) {
+    $('#' + idPrevious).find('.selected').removeClass('selected');
+    $('#' + idClick).addClass('selected');
 }
 
-// displayProduits affiche les produits selon les fonctions de filtre et de tri données
+// displayProducts affiche les produits selon les fonctions de filtre et de tri données
 
-function displayProduits(produits, tri, filtre) {
+function displayProducts(products, productsSort, productsFilter, idClick) {
     // changement de filtre/tri affiché comme filtre/tri sélectionné s'il y a un changement
 
-    if (tri != dernierTri) {
-        toggleSelected('product-criteria');
-    } else if (filtre != dernierFiltre) {
-        toggleSelected('product-categories');
+    if (productsSort != lastSort) {
+        toggleSelected('product-criteria', idClick)
+    } 
+    if (productsFilter != lastFilter) {
+        toggleSelected('product-categories', idClick);
     }
 
-    // tri et filtre de produits
-    // sauvegarde du dernier tri et filtre utilisés
-
-    produits = produits.filter(filtre).sort(tri);
-    dernierFiltre = filtre;
-    dernierTri = tri;
+    products = products.filter(productsFilter).sort(productsSort); // tri et filtre des produits
+    lastFilter = productsFilter;                                   // sauvegarde du dernier filtre utilisé
+    lastSort = productsSort;                                       // sauvegarde du dernier tri utilisé
 
     // mise à jour du nombre total de produits affichés
 
-    $('#products-count').html(produits.length + " produits");
+    $('#products-count').html(products.length + " produits");
 
-    // affichage des produits
+    let productList = $('#products-list'); // sélecteur de la liste de produits
 
-    listeProduits = $('#products-list');
+    // on vide la liste de produits affichée pour mettre la nouvelle
+    productList.empty();
 
-    listeProduits.empty();
-    produits.forEach((produit) => {
-        listeProduits.append(
-            `<a class="productContent" href="./product.html?id=${produit.id}" title="En savoir plus...">
-                <h2 class="productTitle">${produit.name}</h2>
-                <img alt="${produit.name}" src="./assets/img/${produit.image}">
-                <p class="productPrice"><small>Prix</small> ${produit.price}&thinsp;$</p>
+    // insertion et affichage de la liste de produits
+
+    products.forEach((product) => {
+        productList.append(
+            `<a class="productContent" 
+                href="./product.html?id=${product.id}" 
+                title="En savoir plus...">
+
+                <h2 class="productTitle">${product.name}</h2>
+                <img alt="${product.name}" src="./assets/img/${product.image}">
+                <p class="productPrice"><small>Prix</small> ${product.price}&thinsp;$</p>
             </a>`
         );
     });
@@ -117,8 +117,8 @@ $.ajax({
     type: 'GET',
     dataType: 'json',
     success: (data) => {
-        produits = data; // tableau contenant les produits à afficher
-        displayProduits(produits, dernierTri, dernierFiltre);
+        products = data; // tableau contenant les produits à afficher
+        displayProducts(products, lastSort, lastFilter, null); // affichage des produits
     },
     error: (error) => {
         console.log(error);
