@@ -30,10 +30,10 @@ function displayProduct(products){
 
         // affichage des détails du produit
 
-        $("#productTitle").text(product.name);
+        $("#productTitle").html(product.name);
         $("#productImage").attr('src', './assets/img/' + product.image);
-        $("#productDescription").text(product.description);
-        $("#productPrice").text(product.price + " $");
+        $("#productDescription").html(product.description);
+        $("#productPrice").html(product.price + " $");
     
         // affichage des caractéristiques du produit
 

@@ -244,7 +244,7 @@ main {
 }
 
 .row > div {
-	display: inline-block;
+	break-inside: avoid-column;
 	width: 100%;
 	height: 100%;
 }
@@ -288,7 +288,7 @@ main {
 
 .errorMessage {
 	color: red;
-	margin-bottom: 10px;
+	padding-bottom: 10px;
 }
 
 /*------------------------------------------ CSS pour le contenu de la page de contact ------------------------------------------*/

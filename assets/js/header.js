@@ -28,7 +28,7 @@ function updateCount(qtProducts) {
     }
 }
 
-// getQtProduits obtient la quantité de produits dans le panier du local storage
+// getQtProducts obtient la quantité de produits dans le panier du local storage
 
 function getQtProducts() {
     // quantité de produits sauvegardée dans le local storage
