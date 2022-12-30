@@ -6,6 +6,10 @@
 *
 */
 
+/** Note: Ce project a été testé en utilisant l'extension Live Server de VSCode et
+*         doit être lu/exécuté avec un serveur local (Live Server VSCode, Node JS). -->
+*/
+
 // $.validator.setDefaults définit les paramètres du validateur
 
 $.validator.setDefaults({
@@ -17,13 +21,13 @@ $.validator.setDefaults({
     let orderID = JSON.parse(localStorage.getItem('orderID'))
 
     if (orderID == null) {
-      orderID = 1
+      orderID = 1;
     } else {
-      orderID += 1
+      orderID += 1;
     }
 
     localStorage.setItem('orderID', orderID);
-    orderForm.submit() // soumission du formulaire
+    orderForm.submit(); // soumission du formulaire
   }
 });
 

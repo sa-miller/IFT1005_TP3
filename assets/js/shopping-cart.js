@@ -6,6 +6,10 @@
 *
 */
 
+/** Note: Ce project a été testé en utilisant l'extension Live Server de VSCode et
+*         doit être lu/exécuté avec un serveur local (Live Server VSCode, Node JS). -->
+*/
+
 // (getQtProducts() et updateCount proviennent de updateCount.js)
 
 // toggleShownElement cache un élément et en affiche un autre
@@ -39,7 +43,7 @@ function handleShoppingCartPage(products){
 
 function emptyCartConfirm(){
     if (confirm("Voulez-vous supprimer tous les produits du panier?")) {
-        emptyCart()
+        emptyCart();
     }
 }
 
@@ -63,7 +67,7 @@ function getDetailedCartItemsData(products, detailedCartItemData){
 function showCartContentOnly(products){
     // on affiche la section avec le tableau html contenant les produits du panier
     
-    toggleShownElement("#noItemDiv", "#cartContent")
+    toggleShownElement("#noItemDiv", "#cartContent");
 
     // on vide ce tableau
 
@@ -128,9 +132,9 @@ function showCartContentOnly(products){
 }
 
 function changeItemQuantity(products, itemId, quantityChange, id){
-    let cart = JSON.parse(localStorage.getItem('cart')); // tableau contenant le panier
-    let decrementId = "decrementQuantityButton"          // préfixe d'id d'un bouton pour décrémenter la quantité d'un élément
-    let cartItem = cart.find(p => p.id == itemId)        // produit dans le panier pour lequel on change la quantité
+    let cart = JSON.parse(localStorage.getItem('cart'));  // tableau contenant le panier
+    let decrementId = "decrementQuantityButton";          // préfixe d'id d'un bouton pour décrémenter la quantité d'un élément
+    let cartItem = cart.find(p => p.id == itemId);        // produit dans le panier pour lequel on change la quantité
 
     if (id.includes(decrementId) && cartItem.quantite == 1) {
         $("#" + id).prop("disabled", true);
@@ -157,7 +161,7 @@ function changeItemQuantity(products, itemId, quantityChange, id){
 
 function changeItemQuantityConfirm(products, itemId, quantityChange, id, message){
     if(confirm(message)) {
-        changeItemQuantity(products, itemId, quantityChange, id)
+        changeItemQuantity(products, itemId, quantityChange, id);
     }
 }
 

@@ -6,6 +6,10 @@
 *
 */
 
+/** Note: Ce project a été testé en utilisant l'extension Live Server de VSCode et
+*         doit être lu/exécuté avec un serveur local (Live Server VSCode, Node JS). -->
+*/
+
 // updateCount change la quantité de produits dans le panier affiché sur les pages du site
 
 function updateCount(qtProducts) {
@@ -41,4 +45,4 @@ function getQtProducts() {
 
 // premier affichage de produits lors du chargement des pages
 
-updateCount(getQtProducts())
+updateCount(getQtProducts());

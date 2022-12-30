@@ -6,6 +6,10 @@
 *
 */
 
+/** Note: Ce project a été testé en utilisant l'extension Live Server de VSCode et
+*         doit être lu/exécuté avec un serveur local (Live Server VSCode, Node JS). -->
+*/
+
 // ($.urlParam() provient de urlParam.js)
 
 var firstName = $.urlParam("firstname"); // prénom de l'utilisateur

@@ -6,6 +6,10 @@
 *
 */
 
+/** Note: Ce project a été testé en utilisant l'extension Live Server de VSCode et
+*         doit être lu/exécuté avec un serveur local (Live Server VSCode, Node JS). -->
+*/
+
 // ($.urlParam() provient de urlParam.js)
 
 var id = $.urlParam('id'); // id du produit à afficher
@@ -29,7 +33,7 @@ function displayProduct(products){
         $("#productTitle").text(product.name);
         $("#productImage").attr('src', './assets/img/' + product.image);
         $("#productDescription").text(product.description);
-        $("#productPrice").text(product.price + " $")
+        $("#productPrice").text(product.price + " $");
     
         // affichage des caractéristiques du produit
 
@@ -47,7 +51,7 @@ function displayProduct(products){
 // le code ci-bas fait la gestion de l'ajout du produit après avoir cliqué le bouton "ajouter"
 
 $("#addProduct").submit((event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     let cart = JSON.parse(localStorage.getItem('cart')); // tableau contenant les produits dans le panier
 

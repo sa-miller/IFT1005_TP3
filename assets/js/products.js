@@ -6,8 +6,12 @@
 *
 */
 
-var lastFilter = noFilter           // filtre utilisé le plus récent
-var lastSort   = sortPriceBottomTop // tri utilisé le plus récent
+/** Note: Ce project a été testé en utilisant l'extension Live Server de VSCode et
+*         doit être lu/exécuté avec un serveur local (Live Server VSCode, Node JS). -->
+*/
+
+var lastFilter = noFilter;           // filtre utilisé le plus récent
+var lastSort   = sortPriceBottomTop; // tri utilisé le plus récent
 
 // filterProducts est une fonction générale pour déterminer si un produit est dans une certaine catégorie
 
@@ -75,7 +79,7 @@ function displayProducts(products, productsSort, productsFilter, idClick) {
     // changement de filtre/tri affiché comme filtre/tri sélectionné s'il y a un changement
 
     if (productsSort != lastSort) {
-        toggleSelected('product-criteria', idClick)
+        toggleSelected('product-criteria', idClick);
     } 
     if (productsFilter != lastFilter) {
         toggleSelected('product-categories', idClick);
